@@ -1,12 +1,12 @@
 {
-  "name": "mock-pin-api",
+  "name": "mnt-api",
   "version": "1.0.0",
-  "description": "Mock PIN API",
+  "description": "Mint API",
   "main": "src/server.ts",
   "author": "Krishna Acondy",
   "license": "ISC",
   "scripts": {
-    "start": "./node_modules/.bin/ts-node ./src/server.ts"
+    "start": "./node_modules/.bin/tsc -p ./tsconfig.json && node dist/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
