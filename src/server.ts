@@ -1,5 +1,5 @@
 import {Application} from 'express';
-import {authenticate} from './request-handlers';
+import {authenticate, withdraw} from './request-handlers';
 
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -9,6 +9,7 @@ const app: Application = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.route('/api/pin').post(authenticate);
+app.route('/api/withdraw').post(withdraw);
 
 const port = process.env.PORT || 9999;
 

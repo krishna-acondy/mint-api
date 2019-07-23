@@ -1,19 +1,11 @@
 import {Request, Response} from 'express';
-
-let currentUserBalance = 500;
-let overdraft = 0;
-const currentAtmBalance = [
-  {value: 5, quantity: 4},
-  {value: 10, quantity: 15},
-  {value: 20, quantity: 7},
-];
-
+import { setUserBalance, getUserBalance, setOverdraft, getOverdraft, getCurrentAtmBalance } from './database';
 export function authenticate(request: Request, response: Response) {
-  const pin = request.body['pin'];
+  const pin = request.body.pin;
   if (pin === 1111) {
     return response.contentType('application/json')
       .status(200)
-      .json({currentBalance: currentUserBalance});
+      .json({currentBalance: getUserBalance()});
   } else {
     return response.contentType('application/json')
       .status(403)
@@ -28,23 +20,16 @@ export function withdraw(request: Request, response: Response) {
       .status(500)
       .json({error: 'Insufficient ATM Balance'});
   }
-  const newUserBalance = currentUserBalance - requestedAmount;
+  const newUserBalance = getUserBalance() - requestedAmount;
   if (newUserBalance >= 0) {
-    currentUserBalance = newUserBalance;
+    setUserBalance(newUserBalance);
   } else {
-    overdraft = requestedAmount - currentUserBalance;
-    currentUserBalance = 0;
+    setOverdraft(requestedAmount - getUserBalance());
+    setUserBalance(0);
   }
   return response.contentType('application/json')
     .status(200)
-    .json({ currentBalance: currentUserBalance, overdraft });
+    .json({ currentBalance: getUserBalance(), overdraft: getOverdraft() });
 }
 
-function getCurrentAtmBalance() {
-  let total = 0;
-  currentAtmBalance.forEach(denomination => {
-    total += denomination.value * denomination.quantity;
-  });
 
-  return total;
-}

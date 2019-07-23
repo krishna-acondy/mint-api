@@ -6,7 +6,7 @@
   "author": "Krishna Acondy",
   "license": "ISC",
   "scripts": {
-    "tsc": "./node_modules/.bin/tsc -p ./tsconfig.json",
+    "tsc": "rm -rf dist && ./node_modules/.bin/tsc -p ./tsconfig.json",
     "postinstall": "npm run tsc",
     "start": "node dist/server.js"
   },
