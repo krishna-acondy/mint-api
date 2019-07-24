@@ -5,7 +5,7 @@ export function authenticate(request: Request, response: Response) {
   if (pin === 1111) {
     return response.contentType('application/json')
       .status(200)
-      .json({currentBalance: getUserBalance()});
+      .json({currentBalance: getUserBalance(), overdraft: getOverdraft()});
   } else {
     return response.contentType('application/json')
       .status(403)
@@ -29,7 +29,7 @@ export function withdraw(request: Request, response: Response) {
   if (newUserBalance >= 0) {
     setUserBalance(newUserBalance);
   } else {
-    setOverdraft(requestedAmount - getUserBalance());
+    setOverdraft(getOverdraft() + requestedAmount - getUserBalance());
     setUserBalance(0);
   }
   return response.contentType('application/json')
