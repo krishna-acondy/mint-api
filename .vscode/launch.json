@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Mock API",
+            "name": "Debug Mint API",
             "type": "node",
             "request": "launch",
             "args": ["src/server.ts"],

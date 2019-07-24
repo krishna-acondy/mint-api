@@ -1,6 +1,8 @@
 # Mint API
 This project is an API built using `ts-node` with `Express`. It is hosted on the Heroku cloud at [Mint API](https://mnt-api.herokuapp.com/api).
 
+The API can be run locally using the command `npm run start:api`. It can also be debugged in VSCode using the provided debug task 'Debug Mint API'.
+
 # Endpoints
 ## PIN Authentication
 This endpoint can be accessed at `/pin`, and takes a request body that contains a PIN:
