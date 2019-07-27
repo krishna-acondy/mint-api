@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash.clonedeep';
 
-let currentUserBalance = 100;
+let currentUserBalance = 500;
 let overdraft = 0;
 const currentAtmDenominations = [
   { value: 5, quantity: 4 },
