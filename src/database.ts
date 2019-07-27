@@ -1,4 +1,6 @@
-let currentUserBalance = 500;
+import cloneDeep from 'lodash.clonedeep';
+
+let currentUserBalance = 100;
 let overdraft = 0;
 const currentAtmDenominations = [
   { value: 5, quantity: 4 },
@@ -18,13 +20,13 @@ export const setOverdraft = (amount: number) => {
   overdraft = amount;
 }
 
-export const getAvailableDenominations = () => currentAtmDenominations;
+export const getAvailableDenominations = () => cloneDeep(currentAtmDenominations);
 
 export const setAvailableDenominations =
-  (numberOfFives: number, numberOfTens: number, numberOfTwenties: number) => {
-    currentAtmDenominations[0].quantity -= numberOfFives;
-    currentAtmDenominations[1].quantity -= numberOfTens;
-    currentAtmDenominations[2].quantity -= numberOfTwenties;
+  (noteMix: {value: number, quantity: number}[]) => {
+    currentAtmDenominations[0].quantity -= noteMix[0].quantity;
+    currentAtmDenominations[1].quantity -= noteMix[1].quantity;;
+    currentAtmDenominations[2].quantity -= noteMix[2].quantity;;
   }
 
 export const getCurrentAtmBalance = () => {
