@@ -8,7 +8,6 @@ The API can be run locally using the command `npm run start:api`. It can also be
 This endpoint can be accessed at `/pin`, and takes a request body that contains a PIN:
 ```
     {
-        name: 'Michael',
         pin: 1234
     }
 ```
