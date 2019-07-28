@@ -6,11 +6,17 @@ export function authenticate(request: Request, response: Response) {
   if (pin === 1111) {
     return response.contentType('application/json')
       .status(200)
-      .json({currentBalance: getUserBalance(), overdraft: getOverdraft()});
+      .json({
+        name: 'Michael',
+        currentBalance: getUserBalance(),
+        overdraft: getOverdraft()
+      });
   } else {
     return response.contentType('application/json')
       .status(403)
-      .json({error: 'Invalid PIN'});
+      .json({
+        error: 'Invalid PIN'
+      });
   }
 }
 
@@ -42,6 +48,16 @@ export function withdraw(request: Request, response: Response) {
       overdraft: getOverdraft(),
       noteMix
     });
+}
+
+export function balance(request: Request, response: Response) {
+  return response.contentType('application/json')
+  .status(200)
+  .json({
+    name: 'Michael',
+    currentBalance: getUserBalance(),
+    overdraft: getOverdraft()
+  });
 }
 
 function handleInsufficientAtmBalance(requestedAmount: number, response: Response) {
